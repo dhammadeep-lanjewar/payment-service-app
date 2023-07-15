@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\PayOrderController;
+use App\PostcardSendingService;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PayOrderController;
+use App\Postcard;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +18,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/postcards', function () {
+    $postcardService = new PostcardSendingService(country:'us',width:4,height:6);
+    $postcardService->hello(message:'Hello from Dhammadeep from India',email:'test@test.com');
+});
+
+Route::get('/facades', function () {
+    Postcard::hello('Hello from facade','abc@123.com');
 });
 
 Route::get('/pay',[PayOrderController::class,'store']);

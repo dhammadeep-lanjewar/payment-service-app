@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
+use App\PostcardSendingService;
 use App\Billing\BankPaymentGateway;
 use App\Billing\CreditPaymentGateway;
-use Illuminate\Support\ServiceProvider;
 use App\Billing\PaymentGatewayContract;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
                 return new CreditPaymentGateway('usd');
             }
              return new BankPaymentGateway('usd');
+        });
+
+        $this->app->singleton('Postcard',function($app){
+            return new PostcardSendingService(country:'us',width:4,height:6);
         });
     }
 
