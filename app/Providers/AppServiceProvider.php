@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Facades\Invoice;
 use App\PostcardSendingService;
 use App\Billing\BankPaymentGateway;
 use App\Billing\CreditPaymentGateway;
@@ -25,6 +26,11 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton('Postcard',function($app){
             return new PostcardSendingService(country:'us',width:4,height:6);
+        });
+
+        //facade
+        $this->app->singleton('Invoice',function($app){
+            return new Invoice();
         });
     }
 

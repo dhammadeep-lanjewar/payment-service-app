@@ -1,9 +1,11 @@
 <?php
 
+use App\Postcard;
+use App\Facades\Invoice;
+use App\Facades\InvoiceFacade;
 use App\PostcardSendingService;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PayOrderController;
-use App\Postcard;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +32,7 @@ Route::get('/facades', function () {
 });
 
 Route::get('/pay',[PayOrderController::class,'store']);
+
+Route::get('/invoice',function(){
+    InvoiceFacade::getCompanyName();
+});
