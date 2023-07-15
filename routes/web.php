@@ -35,4 +35,4 @@ Route::get('/pay',[PayOrderController::class,'store']);
 
 Route::get('/invoice',function(){
     InvoiceFacade::getCompanyName();
-});
+})->middleware('test');
