@@ -6,6 +6,7 @@ use App\Facades\InvoiceFacade;
 use App\PostcardSendingService;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PayOrderController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,11 @@ Route::get('/pay',[PayOrderController::class,'store']);
 Route::get('/invoice',function(){
     InvoiceFacade::getCompanyName();
 })->middleware('test');
+
+Route::get('/login',function(){
+    return view('form');
+});
+
+Route::post('/login',[UserController::class,'store']);
+
+Route::get('/users',[UserController::class,'index']);
