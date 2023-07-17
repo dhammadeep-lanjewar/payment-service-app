@@ -7,6 +7,7 @@ use App\PostcardSendingService;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PayOrderController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,9 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
+    Log::channel('abuse')->info('Api endpint abuse',[
+        'user_id'=> 1
+    ]);
     return view('welcome');
 });
 
