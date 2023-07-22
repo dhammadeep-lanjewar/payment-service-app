@@ -3,6 +3,7 @@
 use App\Postcard;
 use App\Facades\Invoice;
 use App\Facades\InvoiceFacade;
+use App\Http\Controllers\BooksController;
 use App\PostcardSendingService;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PayOrderController;
@@ -49,3 +50,5 @@ Route::get('/login',function(){
 Route::post('/login',[UserController::class,'store']);
 
 Route::get('/users',[UserController::class,'index']);
+
+Route::resource('/books', BooksController::class);

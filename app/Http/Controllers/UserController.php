@@ -8,6 +8,13 @@ use App\Exceptions\UserNotFoundException;
 
 class UserController extends Controller
 {
+    protected $userModel;
+
+    public function __construct(User $userModel)
+    {
+        $this->userModel = $userModel;
+    }
+
     function index(Request $request) {
         try {
             $users = User::findOrFail(4);
@@ -20,5 +27,10 @@ class UserController extends Controller
     //
     function store(Request $request) {
         return $request->input();
+    }
+
+    public function getUser($userId)
+    {
+        return $this->userModel->find($userId);
     }
 }
